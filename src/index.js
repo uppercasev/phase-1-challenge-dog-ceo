@@ -26,7 +26,6 @@ const createListHtml = (item) => {
     return listItem;
 }
 
-
 window.addEventListener('DOMContentLoaded', async (event) => {
     const serverResponseImg = await getData(imgUrl);
     const dogImages = serverResponseImg.message;
@@ -40,11 +39,8 @@ window.addEventListener('DOMContentLoaded', async (event) => {
     }
     breedDropMenu.addEventListener('change', () => {
         const firstLetter = breedDropMenu.value.toLowerCase();
-        const listItems = breedsList.querySelectorAll('li');
-        listItems.forEach((item) => {
-            if (firstLetter === "all") {
-                item.style.display = "";
-            } else if (item.innerText.toLowerCase().startsWith(firstLetter)) {
+        breedsList.querySelectorAll('li').forEach((item) => {
+            if (firstLetter === "all" || item.innerText.toLowerCase().startsWith(firstLetter)) {
                 item.style.display = "";
             } else {
                 item.style.display = "none";
