@@ -2,6 +2,7 @@ console.log('%c HI', 'color: firebrick')
 
 const imagesContainer = document.querySelector('#dog-image-container');
 const breedsList = document.querySelector('#dog-breeds');
+const breedDropMenu = document.querySelector('#breed-dropdown');
 const imgUrl = 'https://dog.ceo/api/breeds/image/random/4';
 const breedUrl = 'https://dog.ceo/api/breeds/list/all';
 
@@ -37,4 +38,17 @@ window.addEventListener('DOMContentLoaded', async (event) => {
     for (const name in dogBreeds) {
         breedsList.appendChild(createListHtml(name));
     }
+    breedDropMenu.addEventListener('change', () => {
+        const firstLetter = breedDropMenu.value.toLowerCase();
+        const listItems = breedsList.querySelectorAll('li');
+        listItems.forEach((item) => {
+            if (firstLetter === "all") {
+                item.style.display = "";
+            } else if (item.innerText.toLowerCase().startsWith(firstLetter)) {
+                item.style.display = "";
+            } else {
+                item.style.display = "none";
+            }
+        })
+    })
 })
